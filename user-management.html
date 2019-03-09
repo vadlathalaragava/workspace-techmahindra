@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>local storage</title>
+    </head>
+    <body>
+        <form>
+            <input type="text" value="" name="name" placeholder="enter name">
+            <input type="text" value="" name="email" placeholder="enter email">
+            <input type="text" value="" name="address" placeholder="enter address">
+            
+
+        </form>
+        <script>
+   getUser=function(){
+   var userList=[];
+   if(localStorage.getItem('users')!=null){
+    userList=JSON.parse(localStorage.getItem('users'));
+  }
+return userList;
+}
+addUser=function(name,email,address){
+    var userList=getUser();
+   var user={};
+  user.name=name;
+  user.email=email;
+  user.address=address;
+  userList.push(user);
+  localStorage.setItem('users',JSON.stringify(userList));
+  }
+  
+  deleteUser=function(){
+      localStorage.clear('users');
+  }
+  showUser=function(){
+      var userList=getUser();
+      console.log("total users:"+userList.length);
+      if(userList.length>0){
+          console.log(userList.length);
+          for(var i=0;i<userList.length;i++){
+              console.log(userList[i].name,userList[i].email,userList[i].address)
+          }
+
+      }
+      }
+  
+  
+  addUser('sudha','sudha@gmail.com','india');
+        </script>
+    </body>
+</html>
+
